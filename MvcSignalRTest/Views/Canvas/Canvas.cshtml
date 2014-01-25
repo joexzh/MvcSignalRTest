@@ -1,0 +1,225 @@
+﻿@{
+    ViewBag.Title = "Canvas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+<<<<<<< HEAD:MvcSignalRTest/Views/Home/Canvas.cshtml
+<h2 style="display: inline">Canvas</h2>
+<span style="margin-left: 20px"><a id="clear">clear</a></span>
+<input id="save" type="button" value="Save" title="save to png" style="float: right; display: inline" />
+<canvas id="canvas" height="500" width="960" style="border: 1px solid #ccc">你的浏览器不支持HTML5</canvas>
+=======
+
+@model List<MvcSignalRTest.Models.Canvas>
+<h2 style="display: inline">Canvas <a id="addCanvas" style="display: inline; color: green" title="add current canvas to new">+</a></h2>
+<input id="save" type="button" value="Save" title="save to png" style="float: right; display: inline" />
+<ul id="canvasList">
+    @foreach (var item in Model)
+    {
+        <li style="float: left;margin-right:20px;cursor:pointer" id="@item.Id">@item.Name</li>
+    }
+</ul>
+
+<canvas id="canvas" height="500" width="960" style="border: 1px solid #ccc"></canvas>
+
+>>>>>>> 9148ed9237d3b24c82adaf150dbf882347259e4a:MvcSignalRTest/Views/Canvas/Canvas.cshtml
+
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.0.0-rc1.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    <script>
+        var canvasImgData = "";
+        var canvasTmpData = "";
+        var canvasData = "@Html.Raw(ViewBag.canvasData)";
+        var paint = 0;
+<<<<<<< HEAD:MvcSignalRTest/Views/Home/Canvas.cshtml
+        var clear = 0;
+=======
+        var canvasName = "";
+>>>>>>> 9148ed9237d3b24c82adaf150dbf882347259e4a:MvcSignalRTest/Views/Canvas/Canvas.cshtml
+
+        var canvas = document.getElementById('canvas');
+        var cxt = canvas.getContext("2d");
+
+        $(function () {
+            var canvasHub = $.connection.canvasHub;
+            canvasHub.client.MoveTo = function (data) {
+                var obj = eval("([" + data + "])");
+                var x = obj[0].coords.x;
+                var y = obj[0].coords.y;
+<<<<<<< HEAD:MvcSignalRTest/Views/Home/Canvas.cshtml
+                cxt.beginPath();
+=======
+>>>>>>> 9148ed9237d3b24c82adaf150dbf882347259e4a:MvcSignalRTest/Views/Canvas/Canvas.cshtml
+                cxt.moveTo(x, y);
+            }
+
+            canvasHub.client.LineTo = function (data) {
+                var obj = eval("([" + data + "])");
+                for (var i = 0; i < obj.length; i++) {
+                    var x = obj[i].coords.x;
+                    var y = obj[i].coords.y;
+                    cxt.lineTo(x, y);
+                    cxt.stroke();
+                }
+            }
+
+            canvasHub.client.ClearRect = function (data) {
+                var obj = eval("([" + data + "])");
+                for (var i = 0; i < obj.length; i++) {
+                    var x = obj[i].coords.x;
+                    var y = obj[i].coords.y;
+                    cxt.clearRect(x, y, 30, 30);
+                }
+            }
+
+            $.connection.hub.start().done(function () {
+                $("#canvas").mousedown(function (e) {
+
+                    var mouseX = e.pageX - this.offsetLeft;
+                    var mouseY = e.pageY - this.offsetTop;
+
+                    paint = 1;
+                    cxt.beginPath();
+                    cxt.moveTo(mouseX, mouseY); //起始位置
+                    getCanvas(mouseX, mouseY, "moveTo");
+
+                    canvasHub.server.moveTo(canvasTmpData);
+
+                });
+
+                $("#canvas").mousemove(function (e) {
+                    if (paint) {
+                        var mouseX = e.pageX - this.offsetLeft;
+                        var mouseY = e.pageY - this.offsetTop;
+
+                        if (clear == 1) {
+                            cxt.clearRect(mouseX, mouseY, 30, 30);
+                            canvasHub.server.clearRect()
+                            getCanvas(mouseX, mouseY, "clearRect");
+                            canvasHub.server.clearRect(canvasTmpData);
+                        }
+                        else {
+
+                            cxt.lineTo(mouseX, mouseY);
+                            cxt.stroke();
+                            getCanvas(mouseX, mouseY, "lineTo");
+                            canvasHub.server.lineTo(canvasTmpData);
+                        }
+                    }
+                });
+            });
+
+            $("#addCanvas").click(function () {
+                canvasName = prompt("input canvas name", "");
+                AddCanvas(canvasName, canvasData);
+            });
+        });
+<<<<<<< HEAD:MvcSignalRTest/Views/Home/Canvas.cshtml
+=======
+
+
+        $("#canvas").mouseup(function (e) {
+            paint = 0;
+        });
+
+>>>>>>> 9148ed9237d3b24c82adaf150dbf882347259e4a:MvcSignalRTest/Views/Canvas/Canvas.cshtml
+
+
+        $("#canvas").mouseup(function (e) {
+            paint = 0;
+        });
+<<<<<<< HEAD:MvcSignalRTest/Views/Home/Canvas.cshtml
+
+        function getCanvasData(x, y, action) {
+            var str = "{'action':'" + action + "','coords':{'x':" + x + ",'y':" + y + "}}";
+=======
+
+
+
+        function getCanvasData(x, y, action) {
+            var str = "{action:\"" + action + "\",coords:{x:" + x + ",y:" + y + "}}";
+>>>>>>> 9148ed9237d3b24c82adaf150dbf882347259e4a:MvcSignalRTest/Views/Canvas/Canvas.cshtml
+            canvasData += canvasData == "" ? str : "," + str;
+        }
+
+        function getCanvasTmpData(x, y, action) {
+            canvasTmpData = "";
+            var str = "{action:\"" + action + "\",coords:{'x':" + x + ",'y':" + y + "}}";
+            canvasTmpData += canvasTmpData == "" ? str : "," + str;
+        }
+
+        function getCanvas(x, y, action) {
+            //getCanvasData(x, y, action);
+            getCanvasTmpData(x, y, action);
+        }
+
+<<<<<<< HEAD:MvcSignalRTest/Views/Home/Canvas.cshtml
+        function saveImageInfo() {
+            var mycanvas = document.getElementById("canvas");
+            var image = mycanvas.toDataURL("image/png");
+            var w = window.open('about:blank', 'image from canvas');
+            w.document.write("<img src='" + image + "' alt='from canvas'/>");
+        }
+
+        document.getElementById("save").onclick = saveImageInfo;
+
+        document.getElementById("clear").onclick = function () {
+            if (clear != 1)
+                clear = 1;
+            else clear = 0;
+        }
+
+        function InitCanvasData() {
+            var obj = eval("([" + canvasData + "])");
+
+            for (var i = 0; i < obj.length; i++) {
+                var x = obj[i].coords.x;
+                var y = obj[i].coords.y;
+                switch (obj[i].action) {
+                    case "moveTo":
+                        cxt.beginPath();
+                        cxt.moveTo(x, y);
+                        break;
+                    case "lineTo":
+                        cxt.lineTo(x, y);
+                        cxt.stroke();
+                        break;
+                    case "clearRect":
+                        cxt.clearRect(x, y, 30, 30);
+                        break;
+                    default: break;
+                }
+            }
+        }
+
+        InitCanvasData();
+=======
+
+        debugger;
+        function AddCanvas(canvasName, canvasData) {
+            $.ajax({
+                url: "/Canvas/AddCanvas",
+                type: "POST",
+                data: "{'name':'" + canvasName + "','content':'" + canvasData + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                beforeSend: function () {
+                },
+                error: function (e) {
+                    alert("adding error");
+                },
+                success: function (data) {
+                    var canvasList = $("#canvasList");
+                    canvasList.html("");
+                    for (var i = 0; i < data.length; i++) {
+                        canvasList.append("<li id='" + data[i].Id + "'>" + data[i].Name + "</li>");
+                    }
+                }
+            });
+        }
+>>>>>>> 9148ed9237d3b24c82adaf150dbf882347259e4a:MvcSignalRTest/Views/Canvas/Canvas.cshtml
+    </script>
+}
