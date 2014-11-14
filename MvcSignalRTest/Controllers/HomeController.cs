@@ -12,7 +12,6 @@ namespace MvcSignalRTest.Controllers
     {
         Models.SignalrDbEntities context = new Models.SignalrDbEntities();
 
-<<<<<<< HEAD
         public ActionResult Canvas()
         {
             if (HttpContext.Application["canvasData"] != null)
@@ -22,8 +21,6 @@ namespace MvcSignalRTest.Controllers
             return View();
         }
 
-=======
->>>>>>> 9148ed9237d3b24c82adaf150dbf882347259e4a
         public ActionResult Index()
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
