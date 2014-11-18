@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using BGProcess;
 
 namespace MvcSignalRTest
 {
@@ -15,6 +17,7 @@ namespace MvcSignalRTest
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        Thread t1;
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -25,6 +28,11 @@ namespace MvcSignalRTest
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             Application["UserList"] = new List<Models.UserOnlineModel>();
+
+            ThreadStart start = new ThreadStart(InvokeProcess.Process);
+            t1 = new Thread(start);
+            t1.Start();
+            
         }
 
         protected void Session_Start(Object sender, EventArgs e)
@@ -51,6 +59,11 @@ namespace MvcSignalRTest
                 }
             }
             Application.UnLock();
+        }
+
+        protected void Application_End()
+        {
+            t1.Abort();
         }
     }
 }
