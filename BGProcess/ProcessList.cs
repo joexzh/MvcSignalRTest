@@ -17,6 +17,8 @@ namespace BGProcess
             list.Add(new Wo.DiamondsRedCon());
             list.Add(new Wo.DiamondsGreenCon());
             list.Add(new Wo.DiamondsYellowCon());
+
+            list.Add(new NGA.DailyScrapeWall());
         }
     }
 }

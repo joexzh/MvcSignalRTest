@@ -42,6 +42,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="InvokeProcess.cs" />
     <Compile Include="IProcess.cs" />
+    <Compile Include="NGA.cs" />
     <Compile Include="ProcessList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Wo.cs" />
