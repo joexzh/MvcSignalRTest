@@ -30,12 +30,12 @@ namespace BGProcess
                 request.Headers.Add("Accept-Encoding", "gzip, deflate");
 
                 CookieContainer cookieContainer = new CookieContainer();
-                cookieContainer.Add(new Cookie("_i", "VhGk92S105mlSm3BzAqt8ec90ZoAmj9%2FYhgy7m%2FCl8jxc88R61XllFO5M2wWtslW_3484afdd30a64206ffb235803fdea330_1414326208", "/", "17wo.cn"));
-                cookieContainer.Add(new Cookie("lastpath", "/app_api.php?__lib=post&__act=list", "/", "17wo.cn"));
-                cookieContainer.Add(new Cookie("lastvisit", "1416488890", "/", "17wo.cn"));
-                cookieContainer.Add(new Cookie("ngacn0comInfoCheckTime", "1416488500", "/", "17wo.cn"));
-                cookieContainer.Add(new Cookie("ngacn0comUserInfo", "%25B7%25A2%25C1%25CB%25B5%25C4%25B7%25E7%25D7%25D0%09%25E5%258F%2591%25E4%25BA%2586%25E7%259A%2584%25E9%25A3%258E%25E4%25BB%2594%0942%0942%09%09-20%09-525%091%090%090%098_-450", "/", "17wo.cn"));
-                cookieContainer.Add(new Cookie("ngacn0comUserInfoCheck", "ea50c44c0fccc66092c6a0b3347f9b5e", "/", "17wo.cn"));
+                cookieContainer.Add(new Cookie("_i", "VhGk92S105mlSm3BzAqt8ec90ZoAmj9%2FYhgy7m%2FCl8jxc88R61XllFO5M2wWtslW_3484afdd30a64206ffb235803fdea330_1414326208", "/", "nga.178.com"));
+                cookieContainer.Add(new Cookie("lastpath", "/app_api.php?__lib=post&__act=list", "/", "nga.178.com"));
+                cookieContainer.Add(new Cookie("lastvisit", "1416488890", "/", "nga.178.com"));
+                cookieContainer.Add(new Cookie("ngacn0comInfoCheckTime", "1416488500", "/", "nga.178.com"));
+                cookieContainer.Add(new Cookie("ngacn0comUserInfo", "%25B7%25A2%25C1%25CB%25B5%25C4%25B7%25E7%25D7%25D0%09%25E5%258F%2591%25E4%25BA%2586%25E7%259A%2584%25E9%25A3%258E%25E4%25BB%2594%0942%0942%09%09-20%09-525%091%090%090%098_-450", "/", "nga.178.com"));
+                cookieContainer.Add(new Cookie("ngacn0comUserInfoCheck", "ea50c44c0fccc66092c6a0b3347f9b5e", "/", "nga.178.com"));
 
                 request.CookieContainer = cookieContainer;
 

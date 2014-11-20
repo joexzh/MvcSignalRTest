@@ -32,7 +32,6 @@ namespace MvcSignalRTest
             ThreadStart start = new ThreadStart(InvokeProcess.Process);
             t1 = new Thread(start);
             t1.Start();
-            
         }
 
         protected void Session_Start(Object sender, EventArgs e)

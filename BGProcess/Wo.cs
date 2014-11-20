@@ -77,6 +77,40 @@ namespace BGProcess
             }
         }
 
+        public class GetRedPacket:IProcess
+        {
+
+            public void Process()
+            {
+                HttpWebRequest request = HttpWebRequest.Create("http://17wo.cn/FlowRedPacket!LuckDraw.action?pageName=&355") as HttpWebRequest;
+                request.Method = "Get";
+                request.Host = "17wo.cn";
+                request.Accept = "application/json, text/javascript, */*; q=0.01";
+                request.Referer = "http://17wo.cn/FlowRedPacket.action";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko";
+                //request.Headers.Add("Connection", "Keep-Alive");
+                request.Headers.Add("X-Requested-With", "XMLHttpRequest");
+                request.Headers.Add("Accept-Language", "en-US,en;q=0.7,zh-Hans;q=0.3");
+                request.Headers.Add("Accept-Encoding", "gzip, deflate");
+
+                CookieContainer cookieContainer = new CookieContainer();
+                cookieContainer.Add(new Cookie("cookie_user_id", "9965918", "/", "17wo.cn"));
+                cookieContainer.Add(new Cookie("sessionid", "0E4011772FA235F4CBBECB0C7FBDD9E6", "/", "17wo.cn"));
+                cookieContainer.Add(new Cookie("JSESSIONID", "DE096C878DA9809D805169BDBA71ABA9", "/", "17wo.cn"));
+                cookieContainer.Add(new Cookie("CNZZDATA3082302", "cnzz_eid%3D1044351208-1411800539-http%253A%252F%252Fwww.baidu.com%252F%26ntime%3D1416498020", "/", "17wo.cn"));
+
+                request.CookieContainer = cookieContainer;
+                try
+                {
+                    var result = request.GetResponse();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message, ex);
+                }
+            }
+        }
+
         public class DiamondsRedCon : IProcess
         {
 
