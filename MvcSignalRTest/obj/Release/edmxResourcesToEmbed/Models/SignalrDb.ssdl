@@ -5,6 +5,7 @@
     <EntitySet Name="ChatContents" EntityType="SignalrDbModel.Store.ChatContents" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ChatGroups" EntityType="SignalrDbModel.Store.ChatGroups" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ChatUsers" EntityType="SignalrDbModel.Store.ChatUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="SignalrDbModel.Store.User" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_dbo_ChatContents_dbo_ChatGroups_ChatGroup_Id" Association="SignalrDbModel.Store.FK_dbo_ChatContents_dbo_ChatGroups_ChatGroup_Id">
       <End Role="ChatGroups" EntitySet="ChatGroups" />
       <End Role="ChatContents" EntitySet="ChatContents" />
@@ -48,6 +49,14 @@
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="IPAddress" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PWD" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_dbo_ChatContents_dbo_ChatGroups_ChatGroup_Id">
     <End Role="ChatGroups" Type="SignalrDbModel.Store.ChatGroups" Multiplicity="0..1" />

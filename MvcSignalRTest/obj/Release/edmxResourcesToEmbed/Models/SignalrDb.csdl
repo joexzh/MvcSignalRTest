@@ -13,6 +13,7 @@
       <End Role="ChatUsers" EntitySet="ChatUsers" />
       <End Role="ChatContents" EntitySet="ChatContents" />
     </AssociationSet>
+    <EntitySet Name="User" EntityType="SignalrDbModel.User" />
   </EntityContainer>
   <EntityType Name="Canvas">
     <Key>
@@ -79,4 +80,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PWD" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

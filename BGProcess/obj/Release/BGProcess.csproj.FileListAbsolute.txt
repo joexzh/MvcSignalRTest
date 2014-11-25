@@ -1,0 +1,4 @@
+E:\github\MvcSignalRTest\BGProcess\bin\Release\BGProcess.dll
+E:\github\MvcSignalRTest\BGProcess\bin\Release\BGProcess.pdb
+E:\github\MvcSignalRTest\BGProcess\obj\Release\BGProcess.dll
+E:\github\MvcSignalRTest\BGProcess\obj\Release\BGProcess.pdb

@@ -1,11 +1,25 @@
 ﻿@{
     ViewBag.Title = "Canvas";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 <h2 style="display: inline">Canvas</h2>
 <span style="margin-left: 20px"><a id="clear">clear</a></span>
 <input id="save" type="button" value="Save" title="save to png" style="float: right; display: inline" />
 <canvas id="canvas" height="500" width="960" style="border: 1px solid #ccc">你的浏览器不支持HTML5</canvas>
+
+@model List<MvcSignalRTest.Models.Canvas>
+<h2 style="display: inline">Canvas <a id="addCanvas" style="display: inline; color: green" title="add current canvas to new">+</a></h2>
+<input id="save" type="button" value="Save" title="save to png" style="float: right; display: inline" />
+<ul id="canvasList">
+    @foreach (var item in Model)
+    {
+        <li style="float: left;margin-right:20px;cursor:pointer" id="@item.Id">@item.Name</li>
+    }
+</ul>
+
+<canvas id="canvas" height="500" width="960" style="border: 1px solid #ccc"></canvas>
+
 
 @section scripts{
     <script src="~/Scripts/jquery.signalR-2.0.0-rc1.min.js"></script>
@@ -17,6 +31,7 @@
         var canvasData = "@Html.Raw(ViewBag.canvasData)";
         var paint = 0;
         var clear = 0;
+        var canvasName = "";
 
         var canvas = document.getElementById('canvas');
         var cxt = canvas.getContext("2d");
@@ -86,7 +101,18 @@
                     }
                 });
             });
+
+            $("#addCanvas").click(function () {
+                canvasName = prompt("input canvas name", "");
+                AddCanvas(canvasName, canvasData);
+            });
         });
+
+
+        $("#canvas").mouseup(function (e) {
+            paint = 0;
+        });
+
 
 
         $("#canvas").mouseup(function (e) {
@@ -95,12 +121,17 @@
 
         function getCanvasData(x, y, action) {
             var str = "{'action':'" + action + "','coords':{'x':" + x + ",'y':" + y + "}}";
+        }
+
+
+        function getCanvasData(x, y, action) {
+            var str = "{action:\"" + action + "\",coords:{x:" + x + ",y:" + y + "}}";
             canvasData += canvasData == "" ? str : "," + str;
         }
 
         function getCanvasTmpData(x, y, action) {
             canvasTmpData = "";
-            var str = "{'action':'" + action + "','coords':{'x':" + x + ",'y':" + y + "}}";
+            var str = "{action:\"" + action + "\",coords:{'x':" + x + ",'y':" + y + "}}";
             canvasTmpData += canvasTmpData == "" ? str : "," + str;
         }
 
@@ -148,5 +179,29 @@
         }
 
         InitCanvasData();
+
+        debugger;
+        function AddCanvas(canvasName, canvasData) {
+            $.ajax({
+                url: "/Canvas/AddCanvas",
+                type: "POST",
+                data: "{'name':'" + canvasName + "','content':'" + canvasData + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                beforeSend: function () {
+                },
+                error: function (e) {
+                    alert("adding error");
+                },
+                success: function (data) {
+                    var canvasList = $("#canvasList");
+                    canvasList.html("");
+                    for (var i = 0; i < data.length; i++) {
+                        canvasList.append("<li id='" + data[i].Id + "'>" + data[i].Name + "</li>");
+                    }
+                }
+            });
+        }
     </script>
 }
