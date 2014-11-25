@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using BGProcess;
+using MvcSignalRTest.Common;
 
 namespace MvcSignalRTest
 {
@@ -28,6 +29,9 @@ namespace MvcSignalRTest
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             Application["UserList"] = new List<Models.UserOnlineModel>();
+
+            EmailSender sender = new EmailSender();
+            sender.SendMySelf("canvassynctest.apphb.com", "app start");
 
             ThreadStart start = new ThreadStart(InvokeProcess.Process);
             t1 = new Thread(start);
@@ -62,6 +66,9 @@ namespace MvcSignalRTest
 
         protected void Application_End()
         {
+            EmailSender sender = new EmailSender();
+            sender.SendMySelf("canvassynctest.apphb.com", "app end");
+
             t1.Abort();
         }
     }

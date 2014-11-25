@@ -211,6 +211,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Common\EmailSender.cs" />
     <Compile Include="Controllers\CanvasController.cs" />
     <Compile Include="Hub\CanvasHub.cs" />
     <Compile Include="Hub\ChatHub.cs" />
@@ -249,7 +250,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SignalrDb.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>SignalrDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserOnlineModel.cs" />
+    <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -401,6 +406,10 @@
     <ProjectReference Include="..\BGProcess\BGProcess.csproj">
       <Project>{ff9abe2b-fcdd-4a41-87cc-9704d9eeaabd}</Project>
       <Name>BGProcess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Email\Email.csproj">
+      <Project>{5759eea5-6922-4faf-89ad-b1c57b8f92cd}</Project>
+      <Name>Email</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

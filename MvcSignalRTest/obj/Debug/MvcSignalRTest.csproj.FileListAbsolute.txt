@@ -216,3 +216,5 @@ E:\github\MvcSignalRTest\MvcSignalRTest\obj\Debug\MvcSignalRTest.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\obj\Debug\MvcSignalRTest.pdb
 E:\github\MvcSignalRTest\MvcSignalRTest\obj\Debug\MvcSignalRTest.csprojResolveAssemblyReference.cache
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\BGProcess.pdb
+E:\github\MvcSignalRTest\MvcSignalRTest\bin\Email.dll
+E:\github\MvcSignalRTest\MvcSignalRTest\bin\Email.pdb

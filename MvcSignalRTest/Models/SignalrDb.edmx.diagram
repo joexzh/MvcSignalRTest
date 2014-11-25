@@ -11,6 +11,7 @@
         <EntityTypeShape EntityType="SignalrDbModel.ChatUsers" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
         <AssociationConnector Association="SignalrDbModel.FK_dbo_ChatContents_dbo_ChatGroups_ChatGroup_Id" ManuallyRouted="false" />
         <AssociationConnector Association="SignalrDbModel.FK_dbo_ChatContents_dbo_ChatUsers_ChatUser_Id" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SignalrDbModel.User" Width="1.5" PointX="5.25" PointY="3.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

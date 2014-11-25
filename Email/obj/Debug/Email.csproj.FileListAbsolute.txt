@@ -1,0 +1,5 @@
+E:\github\MvcSignalRTest\Email\bin\Debug\Email.dll
+E:\github\MvcSignalRTest\Email\bin\Debug\Email.pdb
+E:\github\MvcSignalRTest\Email\obj\Debug\Email.csprojResolveAssemblyReference.cache
+E:\github\MvcSignalRTest\Email\obj\Debug\Email.dll
+E:\github\MvcSignalRTest\Email\obj\Debug\Email.pdb

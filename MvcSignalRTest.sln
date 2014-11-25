@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSignalRTest", "MvcSignal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGProcess", "BGProcess\BGProcess.csproj", "{FF9ABE2B-FCDD-4A41-87CC-9704D9EEAABD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Email", "Email\Email.csproj", "{5759EEA5-6922-4FAF-89AD-B1C57B8F92CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{7200F72D-3686-4C95-ACDA-169A15FA5F73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{FF9ABE2B-FCDD-4A41-87CC-9704D9EEAABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF9ABE2B-FCDD-4A41-87CC-9704D9EEAABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF9ABE2B-FCDD-4A41-87CC-9704D9EEAABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5759EEA5-6922-4FAF-89AD-B1C57B8F92CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5759EEA5-6922-4FAF-89AD-B1C57B8F92CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5759EEA5-6922-4FAF-89AD-B1C57B8F92CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5759EEA5-6922-4FAF-89AD-B1C57B8F92CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7200F72D-3686-4C95-ACDA-169A15FA5F73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7200F72D-3686-4C95-ACDA-169A15FA5F73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7200F72D-3686-4C95-ACDA-169A15FA5F73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7200F72D-3686-4C95-ACDA-169A15FA5F73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
