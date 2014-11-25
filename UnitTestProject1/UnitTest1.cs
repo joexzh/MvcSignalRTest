@@ -8,12 +8,12 @@ namespace UnitTestProject1
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
-        public void SendEmailMySelfTest()
-        {
-            EmailSender sender = new EmailSender();
-            bool isSuccess = sender.SendMySelf("canvassynctest.apphb.com", "app start");
-            Assert.AreEqual(true, isSuccess);
-        }
+        //[TestMethod]
+        //public void SendEmailMySelfTest()
+        //{
+        //    EmailSender sender = new EmailSender();
+        //    bool isSuccess = sender.SendMySelf("canvassynctest.apphb.com", "app start");
+        //    Assert.AreEqual(true, isSuccess);
+        //}
     }
 }
