@@ -67,5 +67,14 @@ namespace MvcSignalRTest.Common
             //return Send();
             return false;
         }
+
+        public void StartSendMySelf()
+        {
+            SendMySelf("canvassynctest.apphb.com", "app start");
+        }
+
+        public void EndSendMySelf() {
+            SendMySelf("canvassynctest.apphb.com", "app end");
+        }
     }
 }

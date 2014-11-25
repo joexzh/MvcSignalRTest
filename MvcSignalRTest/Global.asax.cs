@@ -19,6 +19,7 @@ namespace MvcSignalRTest
     public class MvcApplication : System.Web.HttpApplication
     {
         Thread t1;
+        Thread t2;
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -33,9 +34,15 @@ namespace MvcSignalRTest
             //EmailSender sender = new EmailSender();
             //sender.SendMySelf("canvassynctest.apphb.com", "app start");
 
+            ThreadStart start2 = new ThreadStart(new EmailSender().StartSendMySelf);
+            t2 = new Thread(start2);
+
             ThreadStart start = new ThreadStart(InvokeProcess.Process);
             t1 = new Thread(start);
+
+            t2.Start();
             t1.Start();
+
         }
 
         protected void Session_Start(Object sender, EventArgs e)
@@ -66,8 +73,11 @@ namespace MvcSignalRTest
 
         protected void Application_End()
         {
-            EmailSender sender = new EmailSender();
-            sender.SendMySelf("canvassynctest.apphb.com", "app end");
+            t2.Abort();
+
+            ThreadStart start2 = new ThreadStart(new EmailSender().StartSendMySelf);
+            t2 = new Thread(start2);
+            t2.Start();
 
             t1.Abort();
         }
