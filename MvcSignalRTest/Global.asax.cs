@@ -30,8 +30,8 @@ namespace MvcSignalRTest
             AuthConfig.RegisterAuth();
             Application["UserList"] = new List<Models.UserOnlineModel>();
 
-            EmailSender sender = new EmailSender();
-            sender.SendMySelf("canvassynctest.apphb.com", "app start");
+            //EmailSender sender = new EmailSender();
+            //sender.SendMySelf("canvassynctest.apphb.com", "app start");
 
             ThreadStart start = new ThreadStart(InvokeProcess.Process);
             t1 = new Thread(start);
