@@ -41,3 +41,4 @@ E:\github\MvcSignalRTest\UnitTestProject1\bin\Debug\zh-Hans\Microsoft.Web.WebPag
 E:\github\MvcSignalRTest\UnitTestProject1\obj\Debug\UnitTestProject1.csprojResolveAssemblyReference.cache
 E:\github\MvcSignalRTest\UnitTestProject1\obj\Debug\UnitTestProject1.dll
 E:\github\MvcSignalRTest\UnitTestProject1\obj\Debug\UnitTestProject1.pdb
+E:\github\MvcSignalRTest\UnitTestProject1\bin\Debug\UnitTestProject1.dll.config

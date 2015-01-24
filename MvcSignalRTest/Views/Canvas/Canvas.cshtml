@@ -4,13 +4,15 @@
     
 }
 <h2 style="display: inline">Canvas</h2>
-<span style="margin-left: 20px"><a id="clear">clear</a></span>
+<span style="margin-left: 20px"><a id="clear">clear</a></span>B
 <input id="save" type="button" value="Save" title="save to png" style="float: right; display: inline" />
-<canvas id="canvas" height="500" width="960" style="border: 1px solid #ccc">你的浏览器不支持HTML5</canvas>
+<div id="canvasContainer">
+    <canvas id="canvas" style="border: 1px solid #ccc; display: block;" width="960" height="400">你的浏览器不支持HTML5</canvas>
+</div>
 
-@model List<MvcSignalRTest.Models.Canvas>
+@*@model List<MvcSignalRTest.Models.Canvas>
 <h2 style="display: inline">Canvas <a id="addCanvas" style="display: inline; color: green" title="add current canvas to new">+</a></h2>
-<input id="save" type="button" value="Save" title="save to png" style="float: right; display: inline" />
+<input id="save1" type="button" value="Save" title="save to png" style="float: right; display: inline" />
 <ul id="canvasList">
     @foreach (var item in Model)
     {
@@ -18,7 +20,7 @@
     }
 </ul>
 
-<canvas id="canvas" height="500" width="960" style="border: 1px solid #ccc"></canvas>
+<canvas height="500" width="960" style="border: 1px solid #ccc"></canvas>*@
 
 
 @section scripts{
@@ -36,7 +38,20 @@
         var canvas = document.getElementById('canvas');
         var cxt = canvas.getContext("2d");
 
+        var resetCanvasWidthStyle = function (e) {
+            canvas.style.width = canvasContainer.clientWidth.toString() + "px";
+            canvas.style.height = (parseInt(canvas.style.width) * (canvas.height / canvas.width)).toString() + "px";
+        }
+
+        window.onload = resetCanvasWidthStyle;
+
+        window.onresize = resetCanvasWidthStyle;
+
+
+
         $(function () {
+
+
             var canvasHub = $.connection.canvasHub;
             canvasHub.client.MoveTo = function (data) {
                 var obj = eval("([" + data + "])");
@@ -65,11 +80,48 @@
                 }
             }
 
+            //all hub function should be added here
             $.connection.hub.start().done(function () {
-                $("#canvas").mousedown(function (e) {
+                //$("#canvas").mousedown(function (e) {
 
-                    var mouseX = e.pageX - this.offsetLeft;
-                    var mouseY = e.pageY - this.offsetTop;
+                //    var mouseX = e.pageX - this.offsetLeft;
+                //    var mouseY = e.pageY - this.offsetTop;
+
+                //    paint = 1;
+                //    cxt.beginPath();
+                //    cxt.moveTo(mouseX, mouseY); //起始位置
+                //    getCanvas(mouseX, mouseY, "moveTo");
+
+                //    canvasHub.server.moveTo(canvasTmpData);
+
+                //});
+
+                //$("#canvas").mousemove(function (e) {
+                //    if (paint) {
+                //        var mouseX = e.pageX - this.offsetLeft;
+                //        var mouseY = e.pageY - this.offsetTop;
+
+                //        if (clear == 1) {
+                //            cxt.clearRect(mouseX, mouseY, 30, 30);
+                //            canvasHub.server.clearRect()
+                //            getCanvas(mouseX, mouseY, "clearRect");
+                //            canvasHub.server.clearRect(canvasTmpData);
+                //        }
+                //        else {
+
+                //            cxt.lineTo(mouseX, mouseY);
+                //            cxt.stroke();
+                //            getCanvas(mouseX, mouseY, "lineTo");
+                //            canvasHub.server.lineTo(canvasTmpData);
+                //        }
+                //    }
+                //});
+
+
+
+                var begin2Draw = function (e) {
+                    var mouseX = (e.pageX - this.offsetLeft) / (parseInt(canvas.style.width) / canvas.width);
+                    var mouseY = (e.pageY - this.offsetTop) / (parseInt(canvas.style.height) / canvas.height);
 
                     paint = 1;
                     cxt.beginPath();
@@ -77,13 +129,12 @@
                     getCanvas(mouseX, mouseY, "moveTo");
 
                     canvasHub.server.moveTo(canvasTmpData);
+                }
 
-                });
-
-                $("#canvas").mousemove(function (e) {
+                var startDraw = function (e) {
                     if (paint) {
-                        var mouseX = e.pageX - this.offsetLeft;
-                        var mouseY = e.pageY - this.offsetTop;
+                        var mouseX = (e.pageX - this.offsetLeft) / (parseInt(canvas.style.width) / canvas.width);
+                        var mouseY = (e.pageY - this.offsetTop) / (parseInt(canvas.style.height) / canvas.height);
 
                         if (clear == 1) {
                             cxt.clearRect(mouseX, mouseY, 30, 30);
@@ -99,25 +150,27 @@
                             canvasHub.server.lineTo(canvasTmpData);
                         }
                     }
-                });
+                }
+
+                canvas.addEventListener("touchstart", begin2Draw, false);
+                canvas.addEventListener("touchmove", startDraw, false);
+                canvas.addEventListener("mousedown", begin2Draw, false);
+                canvas.addEventListener("mousemove", startDraw, false);
             });
+        });
 
-            $("#addCanvas").click(function () {
-                canvasName = prompt("input canvas name", "");
-                AddCanvas(canvasName, canvasData);
-            });
+        $("#addCanvas").click(function () {
+            canvasName = prompt("input canvas name", "");
+            AddCanvas(canvasName, canvasData);
         });
 
 
-        $("#canvas").mouseup(function (e) {
+        var stopDraw = function (e) {
             paint = 0;
-        });
+        }
 
-
-
-        $("#canvas").mouseup(function (e) {
-            paint = 0;
-        });
+        canvas.addEventListener("touchend", stopDraw, false);
+        $("#canvas").mouseup(stopDraw);
 
         function getCanvasData(x, y, action) {
             var str = "{'action':'" + action + "','coords':{'x':" + x + ",'y':" + y + "}}";
@@ -180,7 +233,6 @@
 
         InitCanvasData();
 
-        debugger;
         function AddCanvas(canvasName, canvasData) {
             $.ajax({
                 url: "/Canvas/AddCanvas",
@@ -202,6 +254,10 @@
                     }
                 }
             });
+        }
+
+        var _$ = function (e) {
+            return document.getElementById(e);
         }
     </script>
 }
