@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Microsoft.AspNet.SignalR;
-using System.Data.Entity;
-using System.Net;
-using System.Web.SessionState;
-using System.Web.Services;
 
-namespace MvcSignalRTest
+namespace MvcSignalRTest.Hub
 {
-    public class ChatHub : Hub
+    public class ChatHub : Microsoft.AspNet.SignalR.Hub
     {
-        Models.SignalrDbEntities context = new Models.SignalrDbEntities();
+        readonly Models.SignalrDbEntities _context = new Models.SignalrDbEntities();
 
         public void ChangeNameNotice(string oldName, string newName)
         {
@@ -21,15 +16,15 @@ namespace MvcSignalRTest
 
         public void Send(string name, string message)
         {
-            Models.ChatUsers chatUser = context.ChatUsers.FirstOrDefault(u => u.UserName == name);
+            Models.ChatUsers chatUser = _context.ChatUsers.FirstOrDefault(u => u.UserName == name);
             Models.ChatContents chatContent = new Models.ChatContents()
             {
                 Content = message,
                 CreateDate = DateTime.Now,
                 ChatUsers = chatUser
             };
-            context.ChatContents.Add(chatContent);
-            context.SaveChanges();
+            _context.ChatContents.Add(chatContent);
+            _context.SaveChanges();
             Clients.All.addNewMessageToPage(name, message, DateTime.Now);
         }
 

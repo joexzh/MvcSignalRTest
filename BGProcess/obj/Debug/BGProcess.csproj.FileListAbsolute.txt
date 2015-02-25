@@ -1,7 +1,7 @@
 E:\github\MvcSignalRTest\BGProcess\bin\Debug\BGProcess.dll
 E:\github\MvcSignalRTest\BGProcess\bin\Debug\BGProcess.pdb
-E:\github\MvcSignalRTest\BGProcess\obj\Debug\BGProcess.dll
-E:\github\MvcSignalRTest\BGProcess\obj\Debug\BGProcess.pdb
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\BGProcess.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\BGProcess.pdb
 E:\github\MvcSignalRTest\BGProcess\obj\Debug\BGProcess.csprojResolveAssemblyReference.cache
+E:\github\MvcSignalRTest\BGProcess\obj\Debug\BGProcess.dll
+E:\github\MvcSignalRTest\BGProcess\obj\Debug\BGProcess.pdb

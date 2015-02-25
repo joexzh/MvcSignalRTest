@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
-using WebMatrix.WebData;
 using MvcSignalRTest.Filters;
 using MvcSignalRTest.Models;
+using WebMatrix.WebData;
 
 namespace MvcSignalRTest.Controllers
 {
@@ -246,7 +245,6 @@ namespace MvcSignalRTest.Controllers
 
         //
         // POST: /Account/ExternalLoginConfirmation
-
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]

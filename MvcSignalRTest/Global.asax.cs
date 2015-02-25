@@ -68,7 +68,7 @@ namespace MvcSignalRTest
 
         protected void Application_End()
         {
-            ThreadStart start2 = new ThreadStart(new EmailSender().EndSendMySelf);
+            ThreadStart start2 = new EmailSender().EndSendMySelf;
             Thread t2 = new Thread(start2);
             t2.Start();
             t1.Abort();

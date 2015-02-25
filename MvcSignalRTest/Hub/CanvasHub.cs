@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.AspNet.SignalR;
+﻿using System.Web;
 
-namespace MvcSignalRTest
+namespace MvcSignalRTest.Hub
 {
-    public class CanvasHub : Hub
+    public class CanvasHub : Microsoft.AspNet.SignalR.Hub
     {
         public void MoveTo(string canvasTmpData)
         {

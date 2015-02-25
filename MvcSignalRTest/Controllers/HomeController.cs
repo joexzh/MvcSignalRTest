@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Net;
+using MvcSignalRTest.Models;
 
 namespace MvcSignalRTest.Controllers
 {
     public class HomeController : Controller
     {
-        Models.SignalrDbEntities context = new Models.SignalrDbEntities();
+        readonly SignalrDbEntities _context = new SignalrDbEntities();
 
         public ActionResult Canvas()
         {
@@ -53,7 +52,7 @@ namespace MvcSignalRTest.Controllers
 
         public JsonResult LoadChatContent(int chatContentSkip, int chatContentTake)
         {
-            var chatContent = context.ChatContents.OrderByDescending(c => c.CreateDate).Skip(chatContentSkip)
+            var chatContent = _context.ChatContents.OrderByDescending(c => c.CreateDate).Skip(chatContentSkip)
                 .Take(chatContentTake).Include(u => u.ChatUsers)
                 .Select(c => new { c.ChatUsers.UserName, c.Content, c.CreateDate }).ToList();
             return Json(chatContent);
@@ -61,69 +60,60 @@ namespace MvcSignalRTest.Controllers
 
         public bool ValidateUser(string name)
         {
-            foreach (var item in (List<Models.UserOnlineModel>)HttpContext.Application["UserList"])
-            {
-                if (item.Name == name && item.Ip != Request.UserHostAddress)
-                {
-                    return false;
-                }
-            }
-            return true;
+            return ((List<UserOnlineModel>) HttpContext.Application["UserList"]).All(item => item.Name != name || item.Ip == Request.UserHostAddress);
         }
 
         public bool ChangeUserName(string oldName, string newName)
         {
-            foreach (var item in (List<Models.UserOnlineModel>)HttpContext.Application["UserList"])
+            foreach (ChatUsers user in from item in (List<UserOnlineModel>)HttpContext.Application["UserList"] where item.Name == oldName select _context.ChatUsers.FirstOrDefault(u => u.UserName == item.Name))
             {
-                if (item.Name == oldName)
+                if (user != null) user.UserName = newName;
+                for (int index = 0;
+                    index < ((List<UserOnlineModel>) HttpContext.Application["UserList"]).Count;
+                    index++)
                 {
-                    var user = context.ChatUsers.FirstOrDefault(u => u.UserName == item.Name);
-                    user.UserName = newName;
-                    foreach (var _item in (List<Models.UserOnlineModel>)HttpContext.Application["UserList"])
+                    UserOnlineModel item = ((List<UserOnlineModel>) HttpContext.Application["UserList"])[index];
+                    if (item == null) throw new ArgumentNullException("newName");
+                    if (item.Name == oldName)
                     {
-                        if (_item.Name == oldName)
-                        {
-                            _item.Name = newName;
-                        }
+                        item.Name = newName;
                     }
-                    context.SaveChanges();
-                    return true;
                 }
+                _context.SaveChanges();
+                return true;
             }
             return false;
         }
 
         public bool GetUser(string name)
         {
-            foreach (var item in (List<Models.UserOnlineModel>)HttpContext.Application["UserList"])
+            foreach (var item in (List<UserOnlineModel>)HttpContext.Application["UserList"])
             {
-                if (Session["UserId"].ToString() == item.Id)
-                {
-                    Models.ChatUsers user = context.ChatUsers.FirstOrDefault(u => u.UserName == name);
+                if (Session["UserId"].ToString() != item.Id) continue;
+                ChatUsers user = _context.ChatUsers.FirstOrDefault(u => u.UserName == name);
 
-                    if (user != null)
+                if (user != null)
+                {
+                    if (user.IPAddress != Request.UserHostAddress)
                     {
-                        if (user.IPAddress != Request.UserHostAddress)
-                        {
-                            user.IPAddress = Request.UserHostAddress;
-                        }
-                        context.SaveChanges();
+                        user.IPAddress = Request.UserHostAddress;
                     }
-                    else
-                    {
-                        user = new Models.ChatUsers()
-                        {
-                            UserName = name,
-                            IPAddress = Request.UserHostAddress
-                        };
-                        context.ChatUsers.Add(user);
-                        context.SaveChanges();
-                    }
-                    user = context.ChatUsers.First(u => u.UserName == name);
-                    item.Name = user.UserName;
-                    item.Ip = Request.UserHostAddress;
-                    return true;
+                    _context.SaveChanges();
                 }
+                else
+                {
+                    user = new ChatUsers()
+                    {
+                        UserName = name,
+                        IPAddress = Request.UserHostAddress
+                    };
+                    _context.ChatUsers.Add(user);
+                    _context.SaveChanges();
+                }
+                user = _context.ChatUsers.First(u => u.UserName == name);
+                item.Name = user.UserName;
+                item.Ip = Request.UserHostAddress;
+                return true;
             }
             return false;
         }

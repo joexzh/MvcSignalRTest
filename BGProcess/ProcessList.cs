@@ -8,17 +8,17 @@ namespace BGProcess
 {
     public class ProcessList
     {
-        public List<IProcess> list = new List<IProcess>();
+        public List<IProcess> List = new List<IProcess>();
 
         public ProcessList()
         {
-            list.Add(new Wo.CheckIn());
-            list.Add(new Wo.FlowRedPacket());
-            list.Add(new Wo.DiamondsRedCon());
-            list.Add(new Wo.DiamondsGreenCon());
-            list.Add(new Wo.DiamondsYellowCon());
+            List.Add(new Wo.CheckIn());
+            List.Add(new Wo.FlowRedPacket());
+            List.Add(new Wo.DiamondsRedCon());
+            List.Add(new Wo.DiamondsGreenCon());
+            List.Add(new Wo.DiamondsYellowCon());
 
-            list.Add(new NGA.DailyScrapeWall());
+            List.Add(new NGA.DailyScrapeWall());
         }
     }
 }

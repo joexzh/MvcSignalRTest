@@ -14,10 +14,11 @@ namespace BGProcess
         {
             public void Process()
             {
-                string contentStr = "app_id=1001&access_uid=663649&access_token=939dcf0af778d19fd87e17956f3ee309&t=1416489181&sign=8dfef11472f388005831ffc044a61c0f&send_ua=";
-                byte[] _contentByte = Encoding.ASCII.GetBytes(contentStr);
+                const string contentStr = "app_id=1001&access_uid=663649&access_token=939dcf0af778d19fd87e17956f3ee309&t=1416489181&sign=8dfef11472f388005831ffc044a61c0f&send_ua=";
+                byte[] contentByte = Encoding.ASCII.GetBytes(contentStr);
 
-                HttpWebRequest request = HttpWebRequest.Create("http://nga.178.com/app_api.php?__lib=checkin&__act=dosign&__ngaClientChecksum=d8e2a96aeef183cda62a288bc5b332531416489181") as HttpWebRequest;
+                HttpWebRequest request = WebRequest.Create("http://nga.178.com/app_api.php?__lib=checkin&__act=dosign&__ngaClientChecksum=d8e2a96aeef183cda62a288bc5b332531416489181") as HttpWebRequest;
+                if (request == null) return;
                 request.Method = "Post";
                 request.Host = "nga.178.com";
                 request.Accept = "application/json, text/javascript, */*";
@@ -41,7 +42,7 @@ namespace BGProcess
 
                 using (Stream s = request.GetRequestStream())
                 {
-                    s.Write(_contentByte, 0, _contentByte.Length);
+                    s.Write(contentByte, 0, contentByte.Length);
                 }
 
                 try

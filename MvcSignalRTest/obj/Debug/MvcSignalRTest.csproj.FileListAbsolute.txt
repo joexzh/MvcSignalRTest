@@ -120,6 +120,7 @@ E:\github\MvcSignalRTest\MvcSignalRTest\bin\DotNetOpenAuth.OAuth.Consumer.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\DotNetOpenAuth.OAuth.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\DotNetOpenAuth.OpenId.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+E:\github\MvcSignalRTest\MvcSignalRTest\bin\Email.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\EntityFramework.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\Microsoft.AspNet.SignalR.Core.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\Microsoft.AspNet.SignalR.Owin.dll
@@ -146,6 +147,8 @@ E:\github\MvcSignalRTest\MvcSignalRTest\bin\System.Web.WebPages.Razor.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\WebGrease.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\WebMatrix.Data.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\WebMatrix.WebData.dll
+E:\github\MvcSignalRTest\MvcSignalRTest\bin\BGProcess.pdb
+E:\github\MvcSignalRTest\MvcSignalRTest\bin\Email.pdb
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\Microsoft.AspNet.SignalR.Core.xml
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\Microsoft.AspNet.SignalR.Owin.xml
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
@@ -212,9 +215,6 @@ E:\github\MvcSignalRTest\MvcSignalRTest\bin\ko\System.Spatial.resources.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\ru\System.Spatial.resources.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\zh-Hans\System.Spatial.resources.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\bin\zh-Hant\System.Spatial.resources.dll
+E:\github\MvcSignalRTest\MvcSignalRTest\obj\Debug\MvcSignalRTest.csprojResolveAssemblyReference.cache
 E:\github\MvcSignalRTest\MvcSignalRTest\obj\Debug\MvcSignalRTest.dll
 E:\github\MvcSignalRTest\MvcSignalRTest\obj\Debug\MvcSignalRTest.pdb
-E:\github\MvcSignalRTest\MvcSignalRTest\obj\Debug\MvcSignalRTest.csprojResolveAssemblyReference.cache
-E:\github\MvcSignalRTest\MvcSignalRTest\bin\BGProcess.pdb
-E:\github\MvcSignalRTest\MvcSignalRTest\bin\Email.dll
-E:\github\MvcSignalRTest\MvcSignalRTest\bin\Email.pdb

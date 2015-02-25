@@ -35,15 +35,13 @@
         var clear = 0;
         var canvasName = "";
 
-        var canvas = document.getElementById('canvas');
+        var canvas = document.getElementById("canvas");
         var cxt = canvas.getContext("2d");
 
-        var resetCanvasWidthStyle = function (e) {
+        var resetCanvasWidthStyle = function () {
             canvas.style.width = canvasContainer.clientWidth.toString() + "px";
             canvas.style.height = (parseInt(canvas.style.width) * (canvas.height / canvas.width)).toString() + "px";
         }
-
-        window.onload = resetCanvasWidthStyle;
 
         window.onresize = resetCanvasWidthStyle;
 
@@ -82,40 +80,7 @@
 
             //all hub function should be added here
             $.connection.hub.start().done(function () {
-                //$("#canvas").mousedown(function (e) {
 
-                //    var mouseX = e.pageX - this.offsetLeft;
-                //    var mouseY = e.pageY - this.offsetTop;
-
-                //    paint = 1;
-                //    cxt.beginPath();
-                //    cxt.moveTo(mouseX, mouseY); //起始位置
-                //    getCanvas(mouseX, mouseY, "moveTo");
-
-                //    canvasHub.server.moveTo(canvasTmpData);
-
-                //});
-
-                //$("#canvas").mousemove(function (e) {
-                //    if (paint) {
-                //        var mouseX = e.pageX - this.offsetLeft;
-                //        var mouseY = e.pageY - this.offsetTop;
-
-                //        if (clear == 1) {
-                //            cxt.clearRect(mouseX, mouseY, 30, 30);
-                //            canvasHub.server.clearRect()
-                //            getCanvas(mouseX, mouseY, "clearRect");
-                //            canvasHub.server.clearRect(canvasTmpData);
-                //        }
-                //        else {
-
-                //            cxt.lineTo(mouseX, mouseY);
-                //            cxt.stroke();
-                //            getCanvas(mouseX, mouseY, "lineTo");
-                //            canvasHub.server.lineTo(canvasTmpData);
-                //        }
-                //    }
-                //});
 
 
 
@@ -136,7 +101,7 @@
                         var mouseX = (e.pageX - this.offsetLeft) / (parseInt(canvas.style.width) / canvas.width);
                         var mouseY = (e.pageY - this.offsetTop) / (parseInt(canvas.style.height) / canvas.height);
 
-                        if (clear == 1) {
+                        if (clear === 1) {
                             cxt.clearRect(mouseX, mouseY, 30, 30);
                             canvasHub.server.clearRect()
                             getCanvas(mouseX, mouseY, "clearRect");
@@ -165,7 +130,7 @@
         });
 
 
-        var stopDraw = function (e) {
+        var stopDraw = function () {
             paint = 0;
         }
 
@@ -196,14 +161,14 @@
         function saveImageInfo() {
             var mycanvas = document.getElementById("canvas");
             var image = mycanvas.toDataURL("image/png");
-            var w = window.open('about:blank', 'image from canvas');
+            var w = window.open("about:blank", "image from canvas");
             w.document.write("<img src='" + image + "' alt='from canvas'/>");
         }
 
         document.getElementById("save").onclick = saveImageInfo;
 
         document.getElementById("clear").onclick = function () {
-            if (clear != 1)
+            if (clear !== 1)
                 clear = 1;
             else clear = 0;
         }
@@ -243,7 +208,7 @@
                 async: true,
                 beforeSend: function () {
                 },
-                error: function (e) {
+                error: function () {
                     alert("adding error");
                 },
                 success: function (data) {

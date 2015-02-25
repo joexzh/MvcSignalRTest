@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 
 namespace BGProcess
 {
@@ -14,7 +9,8 @@ namespace BGProcess
         {
             public void Process()
             {
-                HttpWebRequest request = HttpWebRequest.Create("http://17wo.cn/SignIn!checkin.action?checkIn=true&rnd=5634") as HttpWebRequest;
+                HttpWebRequest request = WebRequest.Create("http://17wo.cn/SignIn!checkin.action?checkIn=true&rnd=5634") as HttpWebRequest;
+                if (request == null) return;
                 request.Method = "Get";
                 request.Host = "17wo.cn";
                 request.Accept = "application/json, text/javascript, */*; q=0.01";
@@ -34,7 +30,7 @@ namespace BGProcess
                 request.CookieContainer = cookieContainer;
                 try
                 {
-                    var result = request.GetResponse();
+                    request.GetResponse();
                 }
                 catch (Exception ex)
                 {
@@ -47,7 +43,8 @@ namespace BGProcess
         {
             public void Process()
             {
-                HttpWebRequest request = HttpWebRequest.Create("http://17wo.cn/FlowRedPacket!LuckDraw.action?pageName=earnflow&_=1416160826663") as HttpWebRequest;
+                HttpWebRequest request = WebRequest.Create("http://17wo.cn/FlowRedPacket!LuckDraw.action?pageName=earnflow&_=1416160826663") as HttpWebRequest;
+                if (request == null) return;
                 request.Method = "Get";
                 request.Host = "17wo.cn";
                 request.Accept = "application/json, text/javascript, */*; q=0.01";
@@ -68,7 +65,7 @@ namespace BGProcess
                 request.CookieContainer = cookieContainer;
                 try
                 {
-                    var result = request.GetResponse();
+                    request.GetResponse();
                 }
                 catch (Exception ex)
                 {
@@ -82,7 +79,8 @@ namespace BGProcess
 
             public void Process()
             {
-                HttpWebRequest request = HttpWebRequest.Create("http://17wo.cn/FlowRedPacket!LuckDraw.action?pageName=&355") as HttpWebRequest;
+                HttpWebRequest request = WebRequest.Create("http://17wo.cn/FlowRedPacket!LuckDraw.action?pageName=&355") as HttpWebRequest;
+                if (request == null) return;
                 request.Method = "Get";
                 request.Host = "17wo.cn";
                 request.Accept = "application/json, text/javascript, */*; q=0.01";
@@ -102,7 +100,7 @@ namespace BGProcess
                 request.CookieContainer = cookieContainer;
                 try
                 {
-                    var result = request.GetResponse();
+                    request.GetResponse();
                 }
                 catch (Exception ex)
                 {
@@ -116,7 +114,8 @@ namespace BGProcess
 
             public void Process()
             {
-                HttpWebRequest request = HttpWebRequest.Create("http://17wo.cn/DiamondFlow!changeStatusOfDiamonds.action?diamondButton=red-con") as HttpWebRequest;
+                HttpWebRequest request = WebRequest.Create("http://17wo.cn/DiamondFlow!changeStatusOfDiamonds.action?diamondButton=red-con") as HttpWebRequest;
+                if (request == null) return;
                 request.Method = "Get";
                 request.Host = "17wo.cn";
                 request.Accept = "application/json, text/javascript, */*; q=0.01";
@@ -136,7 +135,7 @@ namespace BGProcess
                 request.CookieContainer = cookieContainer;
                 try
                 {
-                    var result = request.GetResponse();
+                    request.GetResponse();
                 }
                 catch (Exception ex)
                 {
@@ -150,7 +149,8 @@ namespace BGProcess
 
             public void Process()
             {
-                HttpWebRequest request = HttpWebRequest.Create("http://17wo.cn/DiamondFlow!changeStatusOfDiamonds.action?diamondButton=green-con") as HttpWebRequest;
+                HttpWebRequest request = WebRequest.Create("http://17wo.cn/DiamondFlow!changeStatusOfDiamonds.action?diamondButton=green-con") as HttpWebRequest;
+                if (request == null) return;
                 request.Method = "Get";
                 request.Host = "17wo.cn";
                 request.Accept = "application/json, text/javascript, */*; q=0.01";
@@ -170,7 +170,7 @@ namespace BGProcess
                 request.CookieContainer = cookieContainer;
                 try
                 {
-                    var result = request.GetResponse();
+                    request.GetResponse();
                 }
                 catch (Exception ex)
                 {
@@ -184,7 +184,8 @@ namespace BGProcess
 
             public void Process()
             {
-                HttpWebRequest request = HttpWebRequest.Create("http://17wo.cn/DiamondFlow!changeStatusOfDiamonds.action?diamondButton=yellow-con") as HttpWebRequest;
+                HttpWebRequest request = WebRequest.Create("http://17wo.cn/DiamondFlow!changeStatusOfDiamonds.action?diamondButton=yellow-con") as HttpWebRequest;
+                if (request == null) return;
                 request.Method = "Get";
                 request.Host = "17wo.cn";
                 request.Accept = "application/json, text/javascript, */*; q=0.01";
@@ -204,7 +205,7 @@ namespace BGProcess
                 request.CookieContainer = cookieContainer;
                 try
                 {
-                    var result = request.GetResponse();
+                    request.GetResponse();
                 }
                 catch (Exception ex)
                 {

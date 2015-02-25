@@ -10,13 +10,13 @@ namespace MvcSignalRTest.Controllers
 {
     public class CanvasController : Controller
     {
-        SignalrDbEntities db = new SignalrDbEntities();
+        readonly SignalrDbEntities _db = new SignalrDbEntities();
         //
         // GET: /Canvas/
 
         public ActionResult Index()
         {
-            List<Canvas> canvasList = db.Canvas.ToList();
+            List<Canvas> canvasList = _db.Canvas.ToList();
             return View("Canvas", canvasList);
         }
 
@@ -27,11 +27,11 @@ namespace MvcSignalRTest.Controllers
                 Name = name,
                 Content = content
             };
-            db.Canvas.Add(canvas);
-            db.SaveChanges();
+            _db.Canvas.Add(canvas);
+            _db.SaveChanges();
 
             //after adding, return canvas list
-            return db.Canvas.Select(u => u).ToList();
+            return _db.Canvas.Select(u => u).ToList();
         }
     }
 }

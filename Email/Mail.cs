@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
+using System.Net;
+using System.Net.Mail;
 
 namespace Email
 {
-    using System;
-    using System.Data;
-    using System.Configuration;
-    using System.Net.Mail;
     /**/
     /// <summary>
     /// sendMail 的摘要说明
@@ -49,7 +43,7 @@ namespace Email
                 {
                     for (int i = 0; i < attachments.Length; i++)
                     {
-                        if (System.IO.File.Exists(attachments[i]))
+                        if (File.Exists(attachments[i]))
                         {
                             Attachment a = new Attachment(attachments[i]);
                             mm.Attachments.Add(a);
@@ -67,12 +61,10 @@ namespace Email
                     sc.EnableSsl = true;
                     sc.DeliveryMethod = SmtpDeliveryMethod.Network;
                     sc.UseDefaultCredentials = true;//winform中不受影响，asp.net中，false表示不发送身份严正信息 
-                    sc.Credentials = new System.Net.NetworkCredential(userName, password);
+                    sc.Credentials = new NetworkCredential(userName, password);
                 }
                 sc.Send(mm);
                 mm.Dispose();
-                sc = null;
-                mm = null;
             }
             catch
             {
