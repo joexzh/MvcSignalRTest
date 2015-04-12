@@ -24,5 +24,12 @@ namespace MvcSignalRTest.Hub
                 HttpContext.Current.Application["canvasData"] == null ? canvasTmpData : "," + canvasTmpData;
             Clients.Others.LineTo(canvasTmpData);
         }
+
+        public void DrawLine(string canvasTmpData)
+        {
+            HttpContext.Current.Application["canvasData"] +=
+                 HttpContext.Current.Application["canvasData"] == null ? canvasTmpData : "," + canvasTmpData;
+            Clients.Others.DrawLine(canvasTmpData);
+        }
     }
 }

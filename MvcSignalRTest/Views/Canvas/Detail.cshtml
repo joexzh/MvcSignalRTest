@@ -1,0 +1,310 @@
+﻿@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 style="display: inline">Detail</h2>
+<span style="margin-left: 20px"><a id="clear">clear</a></span>
+<input id="save" type="button" value="Save" title="save to png" style="display: inline; float: right;" />
+<div id="canvasContainer">
+    <canvas id="canvas" style="border: 1px solid #ccc; display: block;" width="960" height="400">你的浏览器不支持HTML5</canvas>
+</div>
+<label id="notice" style="display: none; position: fixed; bottom: 20px; left: 20px; border-color: lightpink; background-color: lightpink;"></label>
+
+@model MvcSignalRTest.Models.Canvas
+
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.0.0-rc1.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    @* ReSharper disable once PossiblyUnassignedProperty *@
+    <script>
+        var canvasTmpData = "";
+        var canvasData = "@Html.Raw(@Model.Content)";
+        var paint = 0;
+        var clear = 0;
+        var canvasName = "";
+        var oldContent;
+
+        var canvas = document.getElementById("canvas");
+        var cxt = canvas.getContext("2d");
+
+        
+
+        var notice = function(val) {
+            var container;
+            if ($("div #noticeContainer").length < 1) {
+                container = $("<div></div>").css({
+                    "position": "fixed",
+                    "bottom": "20px",
+                    "left": "20px"
+                }).attr("id", "noticeContainer").appendTo("body");
+            }
+            var noticeLabel = $("<label></label>").css({
+                "border-color": "lightpink",
+                "background-color": "lightpink",
+                "display" : "block"
+            }).html(val).fadeIn().appendTo("#noticeContainer");
+
+            var fadeOutAndDel = function(element) {
+                element.fadeOut("normal",function() {
+                    element.remove();
+                });
+            }
+
+            setTimeout(function() {
+                fadeOutAndDel(noticeLabel);
+            }, 3000);
+
+
+        }
+
+        
+        var updateInterval = function () {
+            var updateInt = setTimeout("updateCanvas()", 5000);
+        }
+
+        function updateValue(values) {
+            var value = JSON.stringify(values);
+
+            $.ajax({
+                url: "/Canvas/Update",
+                type: "PUT",
+                data: value,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data) {
+                    if (data === 1) {
+                        notice("saved canvas data");
+                        updateInterval();
+                    }
+                },
+                error: function(data) {
+                    notice(data.toString());
+                    updateInterval();
+                }
+            });
+        }
+
+        function updateCanvas() {
+            var imgData = canvas.toDataURL("img/png");
+            var content;
+
+            if (oldContent !== imgData) {
+                content = imgData;
+                var values = {
+                    "Id": "@Html.Raw(Model.Id)",
+                    "Name": "@Html.Raw(Model.Name)",
+                    "Content": content
+                };
+
+                oldContent = imgData;
+
+                updateValue(values);
+
+            } else {
+                updateInterval();
+            }
+
+
+        }
+
+        var resetCanvasWidthStyle = function() {
+            canvas.style.width = canvasContainer.clientWidth.toString() + "px";
+            canvas.style.height = (parseInt(canvas.style.width) * (canvas.height / canvas.width)).toString() + "px";
+        };
+        window.onresize = resetCanvasWidthStyle;
+        window.onload = resetCanvasWidthStyle;
+
+        var dueWithJsonData = function(data) {
+            var obj = eval("([" + data + "])");
+            if (obj != null) {
+                for (var i = 0; i < obj.length; i++) {
+
+                    var actionName = obj[i].action.toString();
+                    var x = obj[i].coords.x;
+                    var y = obj[i].coords.y;
+
+                    var drawTool = eval("new " + actionName + "(" + x + "," + y + ")");
+                    if (drawTool != null) {
+                        drawTool.action();
+                    }
+                }
+            }
+        };
+
+
+        var moveTo = function(x, y) {
+            this.action = function() {
+                cxt.beginPath();
+                cxt.moveTo(x, y);
+            };
+        };
+        var lineTo = function(x, y) {
+            this.action = function() {
+                cxt.lineTo(x, y);
+                cxt.stroke();
+            };
+        };
+        var clearRect = function(x, y) {
+            this.action = function() {
+                cxt.clearRect(x, y, 30, 30);
+            };
+        };
+
+        $(function() {
+            var canvasHub = $.connection.canvasHub;
+
+            canvasHub.client.DrawLine = function(data) {
+                dueWithJsonData(data);
+            }
+
+            //all hub function should be added here
+            $.connection.hub.start().done(function() {
+
+
+                var begin2Draw = function(e) {
+                    var mouseX = (e.pageX - this.offsetLeft) / (parseInt(canvas.style.width) / canvas.width);
+                    var mouseY = (e.pageY - this.offsetTop) / (parseInt(canvas.style.height) / canvas.height);
+
+                    paint = 1;
+                    cxt.beginPath();
+                    cxt.moveTo(mouseX, mouseY); //起始位置
+                    addCanvasTmpData(mouseX, mouseY, "moveTo");
+                };
+
+                var startDraw = function(e) {
+                    if (paint) {
+                        var mouseX = (e.pageX - this.offsetLeft) / (parseInt(canvas.style.width) / canvas.width);
+                        var mouseY = (e.pageY - this.offsetTop) / (parseInt(canvas.style.height) / canvas.height);
+
+                        if (clear === 1) {
+                            cxt.clearRect(mouseX, mouseY, 30, 30);
+                            addCanvasTmpData(mouseX, mouseY, "clearRect");
+                        } else {
+                            cxt.lineTo(mouseX, mouseY);
+                            cxt.stroke();
+                            addCanvasTmpData(mouseX, mouseY, "lineTo");
+                        }
+                    }
+                };
+
+                var stopDraw = function(e) {
+                    paint = 0;
+                    canvasHub.server.drawLine(canvasTmpData);
+                    canvasTmpData = "";
+                }
+
+                canvas.addEventListener("touchstart", begin2Draw, false);
+                canvas.addEventListener("touchmove", startDraw, false);
+                canvas.addEventListener("touchend", stopDraw, false);
+
+                canvas.addEventListener("mousedown", begin2Draw, false);
+                canvas.addEventListener("mousemove", startDraw, false);
+                canvas.addEventListener("mouseup", stopDraw, false);
+
+            });
+        });
+
+        $("#addCanvas").click(function() {
+            canvasName = prompt("input canvas name", "");
+            AddCanvas(canvasName, canvasData);
+        });
+
+
+        function getCanvasData(x, y, action) {
+            var str = "{'action':'" + action + "','coords':{'x':" + x + ",'y':" + y + "}}";
+        }
+
+
+        function getCanvasData(x, y, action) {
+            var str = "{action:\"" + action + "\",coords:{x:" + x + ",y:" + y + "}}";
+            canvasData += canvasData === "" ? str : "," + str;
+        }
+
+        function addCanvasTmpData(x, y, action) {
+            var str = "{action:\"" + action + "\",coords:{'x':" + x + ",'y':" + y + "}}";
+            canvasTmpData += canvasTmpData === "" ? str : "," + str;
+        }
+
+        function getCanvas(x, y, action) {
+            //getCanvasData(x, y, action);
+            addCanvasTmpData(x, y, action);
+        }
+
+        function saveImageInfo() {
+            var mycanvas = document.getElementById("canvas");
+            var image = mycanvas.toDataURL("image/png");
+            var w = window.open("about:blank", "image from canvas");
+            w.document.write("<img src='" + image + "' alt='from canvas'/>");
+        }
+
+        document.getElementById("save").onclick = saveImageInfo;
+
+        document.getElementById("clear").onclick = function() {
+            if (clear !== 1)
+                clear = 1;
+            else clear = 0;
+        };
+
+        //function InitCanvasData() {
+        //    var obj = eval("([" + canvasData + "])");
+
+        //    for (var i = 0; i < obj.length; i++) {
+        //        var x = obj[i].coords.x;
+        //        var y = obj[i].coords.y;
+        //        switch (obj[i].action) {
+        //            case "moveTo":
+        //                cxt.beginPath();
+        //                cxt.moveTo(x, y);
+        //                break;
+        //            case "lineTo":
+        //                cxt.lineTo(x, y);
+        //                cxt.stroke();
+        //                break;
+        //            case "clearRect":
+        //                cxt.clearRect(x, y, 30, 30);
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //    }
+        //}
+
+        function InitCanvas() {
+            var img = new Image();
+            img.src = canvasData;
+            cxt.drawImage(img, 0, 0);
+            oldContent = canvasData;
+            updateInterval();
+        }
+
+        InitCanvas();
+
+        function AddCanvas(canvasName, canvasData) {
+            $.ajax({
+                url: "/Canvas/AddCanvas",
+                type: "POST",
+                data: "{'name':'" + canvasName + "','content':'" + canvasData + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                beforeSend: function() {
+                },
+                error: function() {
+                    alert("adding error");
+                },
+                success: function(data) {
+                    var canvasList = $("#canvasList");
+                    canvasList.html("");
+                    for (var i = 0; i < data.length; i++) {
+                        canvasList.append("<li id='" + data[i].Id + "'>" + data[i].Name + "</li>");
+                    }
+                }
+            });
+        }
+
+        var _$ = function(e) {
+            return document.getElementById(e);
+        };
+    </script>
+}

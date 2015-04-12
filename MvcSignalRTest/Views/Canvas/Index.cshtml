@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<MvcSignalRTest.Models.Canvas>
+
+<h2>Index</h2>
+
+<ul id="canvasList">
+    @foreach (var item in Model)
+    {
+        <li style="display: inline; margin-right: 20px; cursor: pointer" id="@item.Id">
+            <a href="~/Canvas/Detail/@item.Id">
+                @item.Name
+                <img src="@item.Content" alt="@item.Name" style="width: 192px; height: 80px"/>
+            </a>
+        </li>
+    }
+</ul>
+
