@@ -1,4 +1,0 @@
-E:\github\MvcSignalRTest\Email\bin\Release\Email.dll
-E:\github\MvcSignalRTest\Email\bin\Release\Email.pdb
-E:\github\MvcSignalRTest\Email\obj\Release\Email.dll
-E:\github\MvcSignalRTest\Email\obj\Release\Email.pdb
