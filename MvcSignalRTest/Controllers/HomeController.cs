@@ -50,7 +50,7 @@ namespace MvcSignalRTest.Controllers
             return View();
         }
 
-        public JsonResult LoadChatContent(int chatContentSkip, int chatContentTake)
+        public JsonResult LoadChatContent(int chatContentSkip, int chatContentTake) 
         {
             var chatContent = _context.ChatContents.OrderByDescending(c => c.CreateDate).Skip(chatContentSkip)
                 .Take(chatContentTake).Include(u => u.ChatUsers)

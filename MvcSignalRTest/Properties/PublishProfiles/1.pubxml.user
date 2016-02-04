@@ -13,13 +13,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2013 16:50:16</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>11/26/2014 03:17:55</publishTime>
+      <publishTime>02/04/2016 15:36:07</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>11/26/2014 03:17:55</publishTime>
+      <publishTime>02/04/2016 15:36:07</publishTime>
     </File>
     <File Include="bin/BGProcess.dll">
-      <publishTime>11/26/2014 03:12:46</publishTime>
+      <publishTime>02/04/2016 15:04:11</publishTime>
     </File>
     <File Include="bin/de/Microsoft.Data.Edm.resources.dll">
       <publishTime>08/11/2013 16:50:16</publishTime>
@@ -49,7 +49,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2013 16:50:15</publishTime>
     </File>
     <File Include="bin/Email.dll">
-      <publishTime>11/26/2014 03:12:46</publishTime>
+      <publishTime>02/04/2016 15:04:11</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>08/11/2013 16:50:15</publishTime>
@@ -100,13 +100,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2013 16:50:16</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.SignalR.Core.dll">
-      <publishTime>01/25/2014 16:51:38</publishTime>
+      <publishTime>09/20/2013 20:54:53</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.SignalR.Owin.dll">
-      <publishTime>01/25/2014 16:51:38</publishTime>
+      <publishTime>09/20/2013 21:13:56</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.SignalR.SystemWeb.dll">
-      <publishTime>01/25/2014 16:51:38</publishTime>
+      <publishTime>09/20/2013 21:13:57</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.Edm.dll">
       <publishTime>08/11/2013 16:50:16</publishTime>
@@ -115,13 +115,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2013 16:50:16</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.dll">
-      <publishTime>01/25/2014 16:51:38</publishTime>
+      <publishTime>09/20/2013 20:54:53</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
-      <publishTime>01/25/2014 16:51:38</publishTime>
+      <publishTime>09/20/2013 20:54:53</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.dll">
-      <publishTime>01/25/2014 16:51:38</publishTime>
+      <publishTime>09/20/2013 20:54:53</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>08/11/2013 16:50:02</publishTime>
@@ -133,10 +133,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2013 16:50:16</publishTime>
     </File>
     <File Include="bin/MvcSignalRTest.dll">
-      <publishTime>11/26/2014 03:17:52</publishTime>
+      <publishTime>02/04/2016 15:36:01</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>01/25/2014 16:51:38</publishTime>
+      <publishTime>02/08/2015 15:33:58</publishTime>
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>09/20/2013 20:54:53</publishTime>
@@ -257,6 +257,48 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/zh-Hant/System.Spatial.resources.dll">
       <publishTime>08/11/2013 16:50:16</publishTime>
+    </File>
+    <File Include="Content/bootstrap/css/bootstrap-theme.css">
+      <publishTime>02/08/2015 14:29:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap/css/bootstrap-theme.css.map">
+      <publishTime>02/08/2015 14:29:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap/css/bootstrap-theme.min.css">
+      <publishTime>02/08/2015 14:29:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap/css/bootstrap.css">
+      <publishTime>02/08/2015 14:29:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap/css/bootstrap.css.map">
+      <publishTime>02/08/2015 14:29:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap/css/bootstrap.min.css">
+      <publishTime>02/08/2015 14:29:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap/fonts/glyphicons-halflings-regular.eot">
+      <publishTime>02/08/2015 14:29:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap/fonts/glyphicons-halflings-regular.svg">
+      <publishTime>02/08/2015 14:29:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap/fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>02/08/2015 14:29:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap/fonts/glyphicons-halflings-regular.woff">
+      <publishTime>02/08/2015 14:29:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap/fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>02/08/2015 14:29:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap/js/bootstrap.js">
+      <publishTime>02/08/2015 14:29:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap/js/bootstrap.min.js">
+      <publishTime>02/08/2015 14:29:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap/js/npm.js">
+      <publishTime>02/08/2015 14:29:26</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>08/11/2013 16:28:18</publishTime>
@@ -471,17 +513,29 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Models/SignalrDb.edmx.diagram">
       <publishTime>11/26/2014 00:52:37</publishTime>
     </File>
+    <File Include="Models/SignalrDb.edmx.sql">
+      <publishTime>02/04/2016 15:32:05</publishTime>
+    </File>
     <File Include="packages.config">
-      <publishTime>01/25/2014 16:51:38</publishTime>
+      <publishTime>02/04/2016 15:03:02</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>11/26/2014 03:17:53</publishTime>
+      <publishTime>02/04/2016 15:36:03</publishTime>
     </File>
     <File Include="Scripts/jquery-1.8.2.js">
       <publishTime>08/11/2013 16:28:42</publishTime>
     </File>
     <File Include="Scripts/jquery-1.8.2.min.js">
       <publishTime>08/11/2013 16:28:42</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.3.js">
+      <publishTime>02/08/2015 15:33:44</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.3.min.js">
+      <publishTime>02/08/2015 15:33:44</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.3.min.map">
+      <publishTime>02/08/2015 15:33:44</publishTime>
     </File>
     <File Include="Scripts/jquery-ui-1.8.24.js">
       <publishTime>08/11/2013 16:28:45</publishTime>
@@ -496,16 +550,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2013 16:50:17</publishTime>
     </File>
     <File Include="Scripts/jquery.signalR-2.0.0-rc1.js">
-      <publishTime>01/25/2014 16:51:38</publishTime>
+      <publishTime>09/20/2013 20:55:00</publishTime>
     </File>
     <File Include="Scripts/jquery.signalR-2.0.0-rc1.min.js">
       <publishTime>09/20/2013 20:55:00</publishTime>
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.js">
-      <publishTime>08/11/2013 16:28:46</publishTime>
+      <publishTime>02/08/2015 15:33:43</publishTime>
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
-      <publishTime>08/11/2013 16:28:46</publishTime>
+      <publishTime>02/08/2015 15:33:43</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
       <publishTime>08/11/2013 16:28:44</publishTime>
@@ -529,7 +583,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2013 16:28:46</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>08/11/2013 16:28:46</publishTime>
+      <publishTime>02/08/2015 15:33:44</publishTime>
     </File>
     <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
       <publishTime>08/11/2013 16:28:19</publishTime>
@@ -561,11 +615,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Canvas/Canvas.cshtml">
       <publishTime>11/09/2014 18:56:48</publishTime>
     </File>
+    <File Include="Views/Canvas/Detail.cshtml">
+      <publishTime>04/06/2015 11:09:33</publishTime>
+    </File>
+    <File Include="Views/Canvas/Index.cshtml">
+      <publishTime>04/06/2015 13:28:43</publishTime>
+    </File>
     <File Include="Views/Home/About.cshtml">
-      <publishTime>08/11/2013 16:28:19</publishTime>
+      <publishTime>02/25/2015 18:44:18</publishTime>
     </File>
     <File Include="Views/Home/Canvas.cshtml">
-      <publishTime>01/21/2014 00:17:09</publishTime>
+      <publishTime>02/25/2015 18:32:10</publishTime>
     </File>
     <File Include="Views/Home/Chat.cshtml">
       <publishTime>11/09/2014 18:41:37</publishTime>
@@ -580,7 +640,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2013 16:28:19</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>01/25/2014 16:55:25</publishTime>
+      <publishTime>02/08/2015 16:45:30</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>08/12/2013 08:55:04</publishTime>
@@ -592,7 +652,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2013 16:28:19</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/26/2014 03:12:47</publishTime>
+      <publishTime>02/04/2016 15:36:02</publishTime>
     </File>
   </ItemGroup>
 </Project>
