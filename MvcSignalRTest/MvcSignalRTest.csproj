@@ -355,6 +355,7 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+      <None Include="packages.config"/>
     <None Include="Properties\PublishProfiles\1.pubxml" />
     <None Include="Properties\PublishProfiles\aliyun.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
